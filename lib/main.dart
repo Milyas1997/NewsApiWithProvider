@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import 'view/home_screen.dart';
+import 'repository/get_headline.dart';
+import 'view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,11 +11,14 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
+    return MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => GetNewsApi())],
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: SplashScreen(),
+      ),
     );
   }
 }
