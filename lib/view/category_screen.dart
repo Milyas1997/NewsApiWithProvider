@@ -151,6 +151,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                               color: Colors.black,
                                             ),
                                           ),
+                                          const Divider(
+                                            color: Colors.red,
+                                            thickness: 2.0,
+                                          )
                                         ],
                                       )
                                     ],
