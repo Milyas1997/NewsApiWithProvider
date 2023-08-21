@@ -280,6 +280,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: Colors.black,
                                             ),
                                           ),
+                                          const Divider(
+                                            color: Colors.red,
+                                            thickness: 2.0,
+                                          )
                                         ],
                                       )
                                     ],
