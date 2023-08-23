@@ -27,12 +27,7 @@ class _CategoryScreenDetailState extends State<CategoryScreenDetail> {
         backgroundColor: Colors.white,
         elevation: 0.0,
         leading: IconButton(
-            onPressed: () {
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => const CategoryScreen()),
-              // );
-            },
+            onPressed: () {},
             icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
