@@ -9,9 +9,9 @@ import 'home_screen.dart';
 
 class HeadlineDetailScreen extends StatefulWidget {
   const HeadlineDetailScreen(
-      {super.key, required this.index, required this.name});
+      {super.key, required this.index, required this.channelName});
   final int index;
-  final String name;
+  final String channelName;
 
   @override
   State<HeadlineDetailScreen> createState() => _HeadlineDetailScreenState();
@@ -24,8 +24,7 @@ class _HeadlineDetailScreenState extends State<HeadlineDetailScreen> {
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final categoryprovider = Provider.of<GetNewsApi>(context, listen: false);
-      //categoryprovider.getCategoryNews('General');
-      categoryprovider.getChannelChangedNews(widget.name);
+      categoryprovider.getChannelChangedNews(widget.channelName);
     });
   }
 

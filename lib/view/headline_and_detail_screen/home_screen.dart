@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   FilterList? selectedMenu;
 
-  String name = 'bbc-news';
+  String channelName = 'bbc-news';
 
   @override
   void initState() {
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final categoryprovider = Provider.of<GetNewsApi>(context, listen: false);
       categoryprovider.getCategoryNews('General');
-      categoryprovider.getChannelChangedNews(name);
+      categoryprovider.getChannelChangedNews(channelName);
     });
   }
 
@@ -49,21 +49,21 @@ class _HomeScreenState extends State<HomeScreen> {
             initialValue: selectedMenu,
             onSelected: (FilterList item) {
               if (FilterList.bbcnews.name == item.name) {
-                name = 'bbc-news';
-                categoryprovider.getChannelChangedNews(name);
+                channelName = 'bbc-news';
+                categoryprovider.getChannelChangedNews(channelName);
               }
               if (FilterList.arynews.name == item.name) {
-                name = 'ary-news';
-                categoryprovider.getChannelChangedNews(name);
+                channelName = 'ary-news';
+                categoryprovider.getChannelChangedNews(channelName);
               }
               if (FilterList.cnn.name == item.name) {
-                name = "cnn";
-                categoryprovider.getChannelChangedNews(name);
+                channelName = "cnn";
+                categoryprovider.getChannelChangedNews(channelName);
               }
 
               if (FilterList.alJazerra.name == item.name) {
-                name = 'al-jazeera-english';
-                categoryprovider.getChannelChangedNews(name);
+                channelName = 'al-jazeera-english';
+                categoryprovider.getChannelChangedNews(channelName);
               }
             },
             icon: const Icon(
@@ -145,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         builder: (context) =>
                                             HeadlineDetailScreen(
                                           index: index,
-                                          name: name,
+                                          channelName: channelName,
                                         ),
                                       ),
                                     );
