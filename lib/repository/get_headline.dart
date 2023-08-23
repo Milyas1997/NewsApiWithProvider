@@ -8,7 +8,9 @@ import '../model/news_model.dart';
 
 class GetNewsApi with ChangeNotifier {
   String selectedCategory = 'General';
-  CategoryNewsModel? catobj;
+  CategoryNewsModel? categoryChanged;
+  CategoryNewsModel? chanelChanged;
+  NewsModel? generalNews;
 
   List categoriesList = [
     'General',
@@ -19,13 +21,13 @@ class GetNewsApi with ChangeNotifier {
     'Technology'
   ];
 
-  String getChangeCategory(String categoryName) {
+  String getChangeCategoryNames(String categoryName) {
     selectedCategory = categoryName;
     notifyListeners();
     return selectedCategory;
   }
 
-  Future<NewsModel> getHeadline(String channelName) async {
+  Future<CategoryNewsModel> getChannelChangedNews(String channelName) async {
     String headlineUrl =
         'https://newsapi.org/v2/top-headlines?sources=$channelName&apiKey=e86c18ae5c54483aa37342f4e5972d24';
     final Response response = await http.get(Uri.parse(headlineUrl));
@@ -34,9 +36,8 @@ class GetNewsApi with ChangeNotifier {
       final body = jsonDecode(response.body);
       debugPrint('THE RESPONSE COME ARE:');
       debugPrint(response.body);
-      NewsModel newsModel = NewsModel.fromJson(body);
+      chanelChanged = CategoryNewsModel.fromJson(body);
       notifyListeners();
-      return newsModel;
     }
     throw Exception('Error occure within getHeadlineMethod');
   }
@@ -49,24 +50,7 @@ class GetNewsApi with ChangeNotifier {
       debugPrint('API GET ARE:: ${response.body}');
       final body = jsonDecode(response.body);
       var categoryNews = CategoryNewsModel.fromJson(body);
-      catobj = categoryNews;
-      notifyListeners();
-
-      return categoryNews;
-    }
-    throw Exception('Error occure within getCategory method');
-  }
-
-  Future<CategoryNewsModel> getAllHeadline() async {
-    var headlineUrl =
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=e86c18ae5c54483aa37342f4e5972d24';
-
-    final Response response = await http.get(Uri.parse(headlineUrl));
-    if (response.statusCode == 200) {
-      debugPrint('API GET ARE:: ${response.body}');
-      final body = jsonDecode(response.body);
-      var categoryNews = CategoryNewsModel.fromJson(body);
-      catobj = categoryNews;
+      categoryChanged = categoryNews;
       notifyListeners();
 
       return categoryNews;

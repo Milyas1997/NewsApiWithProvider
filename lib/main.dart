@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'repository/get_headline.dart';
 import 'view/splash_screen.dart';
 
